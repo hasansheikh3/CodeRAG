@@ -1,9 +1,9 @@
 Important Note
 ==================
 
-This repository was forked by `Neverdecel <https://github.com/Neverdecel/CodeRAG>`_. I am currently changing it as per the the below goals
-* [x] <s>Add FAISS integration</s>
- 
+This repository was forked from `Neverdecel <https://github.com/Neverdecel/CodeRAG>`_. I am currently changing it as per the the below goals
+- Add support for multiple code files
+- Add support for multiple code files in the same directory
 
 Project Motivation
 ==================
