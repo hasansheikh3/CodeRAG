@@ -1,8 +1,11 @@
-from openai import OpenAI
-from coderag.config import OPENAI_API_KEY, OPENAI_CHAT_MODEL
+from google import genai
+from google.genai import types
+from coderag.config import GEMINI_API_KEY, GEMINI_CHAT_MODEL
 from coderag.search import search_code
 
-client = OpenAI(api_key=OPENAI_API_KEY)
+client = genai.Client(
+    api_key=GEMINI_API_KEY
+)
 
 SYSTEM_PROMPT = """
 You are an expert coding assistant. Your task is to help users with their question. Use the retrieved code context to inform your responses, but feel free to suggest better solutions if appropriate.
@@ -35,19 +38,19 @@ def execute_rag_flow(user_query):
         
         # Construct the full prompt
         full_prompt = PRE_PROMPT.format(query=user_query, code_context=code_context)
-        
-        # Generate response using OpenAI
-        response = client.chat.completions.create(
-            model=OPENAI_CHAT_MODEL,
-            messages=[
-                {"role": "system", "content": SYSTEM_PROMPT},
-                {"role": "user", "content": full_prompt}
-            ],
-            temperature=0.3,
-            max_tokens=4000
+
+        response = client.models.generate_content(
+            model=GEMINI_CHAT_MODEL,
+            config=types.GenerateContentConfig(
+                system_instruction=SYSTEM_PROMPT,
+                temperature=0.3,
+                max_output_tokens=4000
+            ),
+            contents=full_prompt
+
         )
         
-        return response.choices[0].message.content.strip()
+        return response.text
     
     except Exception as e:
         return f"Error in RAG flow execution: {e}"

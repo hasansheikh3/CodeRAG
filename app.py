@@ -1,10 +1,12 @@
 import streamlit as st
-from openai import OpenAI
-from coderag.config import OPENAI_API_KEY, OPENAI_CHAT_MODEL
+from google import genai
+from coderag.config import GEMINI_API_KEY
 from prompt_flow import execute_rag_flow
 
-# Initialize the OpenAI client
-client = OpenAI(api_key=OPENAI_API_KEY)
+# Initialize the Gemini client
+client = genai.Client(
+    api_key=GEMINI_API_KEY
+)
 
 st.title("CodeRAG: Your Coding Assistant")
 
