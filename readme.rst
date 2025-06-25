@@ -1,7 +1,9 @@
 Important Note
 ==================
 
-This POC was nice for it's time. However tools like Cursor and Windsurf are now applying this principle embedded in the IDE.
+This repository was forked by `Neverdecel <https://github.com/Neverdecel/CodeRAG>`_. I am currently changing it as per the the below goals
+* [x] <s>Add FAISS integration</s>
+ 
 
 Project Motivation
 ==================
