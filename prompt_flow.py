@@ -39,6 +39,9 @@ def execute_rag_flow(user_query):
         # Construct the full prompt
         full_prompt = PRE_PROMPT.format(query=user_query, code_context=code_context)
 
+        # print the full prompt for debugging
+        print("Full Prompt for Gemini:", full_prompt)
+
         response = client.models.generate_content(
             model=GEMINI_CHAT_MODEL,
             config=types.GenerateContentConfig(

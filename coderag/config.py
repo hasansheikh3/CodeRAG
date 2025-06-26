@@ -8,7 +8,7 @@ load_dotenv()
 # OpenAI API key and model settings (loaded from .env)
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 OPENAI_EMBEDDING_MODEL = os.getenv("OPENAI_EMBEDDING_MODEL", "text-embedding-ada-002")  # Default to ada-002
-VOYAGEAI_EMBEDDING_MODEL = os.getenv("VOYAGEAI_EMBEDDING_MODEL", "voyage-3.5")  # Default to VoyageAI embedding model
+VOYAGEAI_EMBEDDING_MODEL = os.getenv("VOYAGEAI_EMBEDDING_MODEL", "voyage-code-3")  # Default to VoyageAI embedding model
 OPENAI_CHAT_MODEL = os.getenv("OPENAI_CHAT_MODEL", "gpt-4")  # Default to GPT-4
 VOYAGEAI_API_KEY = os.getenv("VOYAGEAI_API_KEY")  # Optional, for VoyageAI integration
 GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")  # Optional, for Gemini integration
@@ -40,3 +40,5 @@ IGNORE_PATHS = [
     os.path.join(WATCHED_DIR, ".git"),
     os.path.join(WATCHED_DIR, "tests"),
 ]
+
+

@@ -1,25 +1,24 @@
 import numpy as np
-from coderag.config import GEMINI_API_KEY, GEMINI_EMBEDDING_MODEL
-from google import genai
-from google.genai import types
+from coderag.config import VOYAGEAI_API_KEY, VOYAGEAI_EMBEDDING_MODEL
+import voyageai as vo
 
-client = genai.Client(
-    api_key=GEMINI_API_KEY
+
+client = vo.Client(
+    api_key=VOYAGEAI_API_KEY
 )
 
 def generate_embeddings(text):
     """Generate embeddings using the Gemini API."""
     try:
-        response = client.models.embed_content(
-            model=GEMINI_EMBEDDING_MODEL,
-            contents=text,
-            config=types.EmbedContentConfig(
-                output_dimensionality=1024,  # Specify the output dimensionality
-            )
+        response = client.embed(
+            texts=[text],
+            model=VOYAGEAI_EMBEDDING_MODEL,
+            output_dimension=1024  # Specify the output dimensionality
         )
+
         # Extract the embedding from the response
         embeddings = response.embeddings[0]
-        embeddings = np.array(embeddings.values, dtype=np.float32)
+        embeddings = np.array(embeddings, dtype=np.float32)
         return embeddings.reshape(1, -1)  # Reshape to 2D array
     except Exception as e:
         print(f"Error generating embeddings with Gemini: {e}")

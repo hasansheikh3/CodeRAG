@@ -1,5 +1,15 @@
 import voyageai
 from coderag.config import VOYAGEAI_API_KEY, VOYAGEAI_EMBEDDING_MODEL, EMBEDDING_DIM
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
+
+VOYAGEAI_API_KEY = os.getenv("VOYAGEAI_API_KEY")
+VOYAGEAI_EMBEDDING_MODEL = os.getenv("VOYAGEAI_EMBEDDING_MODEL","voyage-3.5")
+EMBEDDING_DIM = 1024
+
+print(f"Api key is {VOYAGEAI_API_KEY}")
 
 vo = voyageai.Client(api_key=VOYAGEAI_API_KEY)
 
